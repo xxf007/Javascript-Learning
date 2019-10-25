@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        input{
+            outline: none;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" id="btn" value="按钮按一下">
+    <div id="box">
+
+    </div>
+    <a href="" id='btn2'>阻止默认事件</a>
+    <script type="text/javascript">
+    //鼠标点击事件
+        var btn = document.getElementById('btn');
+        var box = document.getElementById('box');
+        var btn2 = document.getElementById('btn2');
+        btn.onclick = function(e){
+            //阻止默认行为
+            e.preventDefault();
+            e.stopPropagation();
+            //阻止冒泡事件
+            btn.style.background = 'black';
+            btn.style.color = 'white';
+            box.style.width = '500px';
+            box.style.height = '500px';
+            box.style.background = 'blue';
+        }
+        btn2.onclick = function(event){
+            event.preventDefault();
+            this.style.color = 'red';
+        }
+    </script>
+</body>
+</html>

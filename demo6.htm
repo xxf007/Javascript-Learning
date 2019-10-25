@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+    // 把事件放进函数里
+        
+        window.onload = function(){
+            //页面加载完毕之后执行
+            /*
+            * href 连接地址
+            * src 图片地址
+            */
+            var img = getId('img');
+            var linka = getId('linka');
+            console.log(img.src); 
+        	console.log(linka.href); 
+        	//默认取得绝对路径
+        	//因为取到的值和标签当中的值是不一样的，所以不能用来做对比判断   
+        }  
+         //函数声明 (提升)  
+        function getId(obj){
+            return document.getElementById(obj);
+        }
+    </script>
+</head>
+<body>
+    <img src="./img/Layer20.png" alt="无" id="img">
+    <p>
+        <a href="demo2.html" id="linka">点我啊</a>
+    </p>
+</body>
+</html>

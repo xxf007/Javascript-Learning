@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #btn{
+            background: red;
+            color: #fff;
+            font-size: 16px;
+        }
+    </style>
+    <script type="text/javascript">
+    // 把事件放进函数里
+        
+        window.onload = function(){
+            //页面加载完毕之后执行
+            var btn = getId('btn');
+            var btn2 = getId('text');
+            var result = getId('result');
+            btn.onclick = function(){
+                console.log(btn.type);
+                console.log(btn.getAttribute('value'));
+                console.log(btn.attributes);
+                console.log(btn.attributes[1]);
+                console.log(btn.attributes['value']);
+                console.log(btn.attributes['value'].nodeName);
+                console.log(btn.attributes['value'].nodeValue);
+                console.log(btn['name']);
+                console.log(btn.className);
+                console.log(text.getAttribute('class'));
+                console.log(btn.classList);
+                console.log(btn.style.background);//只能拿到行内style里的样式
+                console.log(text.value);
+                btn.value = '输出成功';
+                // result.innerHTML = text.value;
+                result.innerHTML = '<p>' + text.value + '</p>' + result.innerHTML;
+            }
+        }  
+         //函数声明 (提升)  
+        function getId(obj){
+            return document.getElementById(obj);
+        }
+    </script>
+</head>
+<body>
+    <input type="button" id="btn" value="提交" name="submit" class="btn submit" style="background: red;">
+    <input type="text" id="text" value="一条简单的文本信息" class="textclass">
+    <div id="result"></div>
+</body>
+</html>

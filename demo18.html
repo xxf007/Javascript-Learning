@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js-18[自定义属性---选项卡]</title>
+    <script>
+        window.onload = function(){
+           var inputs=document.querySelectorAll('input');
+           var divs=document.querySelectorAll('div');
+           var prevlast = inputs[0];
+           var flag = 0;
+           function init(){
+                for(var i = 0; i < inputs.length; i++){
+                    inputs[i].style.background="";
+                    divs[i].style.display="none";
+                }
+                inputs[flag].style.background="#990000";
+                divs[flag].style.display="block";
+           }
+           init();
+           for(var i = 0; i < inputs.length; i++){
+               inputs[i].index = i;
+               inputs[i].onclick = function(){
+                //    //把上一次点击对像的背景色去掉
+            	// 	prevlast.style.background="";
+            	// 	//把上一个对应的DIV隐藏
+            	// 	divs[prevlast.index].style.display="none";
+            	// 	//填加当前点击按扭的背景色
+            	// 	this.style.background="#990000";
+            	// 	//让当前点击的按扭,对应的div显示出来
+            	// 	divs[this.index].style.display="block";
+            	// 	//把上一次点击的对像更新成当成点击的对像
+                //     prevlast = this;  
+                    flag = this.index;
+                    init();
+               }
+           }
+        }
+    </script>
+    <style>
+        div{
+            border: 1px solid red;
+            width: 200px;
+            height: 200px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="选项1">
+    <input type="button" value="选项2">
+    <input type="button" value="选项3">
+    <div>内容1</div>
+    <div>内容2</div>
+    <div>内容3</div>
+</body>
+</html>

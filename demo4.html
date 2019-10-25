@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+    // 把事件放进函数里
+        
+        window.onload = function(){
+            //页面加载完毕之后执行
+            var btn = getId('btn');
+            var btn2 = getId('btn2');
+            var box = getId('box');
+            btn.onclick = function(){
+                SetStyle('red');
+            }
+            btn2.onclick = function(){
+                SetStyle('blue');
+            }
+        }  
+         //函数声明 (提升)  
+        function SetStyle(color){
+            //函数声明 (提升)
+            //变量声明(提升)
+            box.style.background=color;
+            box.style.width="100px";
+            box.style.height="100px";
+        }
+        function getId(obj){
+            return document.getElementById(obj);
+        }
+    </script>
+</head>
+<body>
+    <!--  -->
+    <button id='btn'>哈哈</button>
+    <button id='btn2'>呵呵</button>
+    <div id="box"></div>
+</body>
+</html>

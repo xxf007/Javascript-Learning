@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单全选，取消，反选操作</title>
+    <script type="text/javascript">     
+		 window.onload=function(){
+
+             var sectAll = document.getElementById('sectAll');
+             var sectCancel = document.getElementById('sectCancel');
+             var sectReturn = document.getElementById('sectReturn');
+
+
+             var form = document.getElementById('form');
+             var inputs = form.getElementsByTagName('input');
+
+             //全选
+             sectAll.onclick=function(){
+              	for (var i = 0 ; i < inputs.length; i++) {
+                   	 inputs[i].checked= 'checked';
+             	};
+             };
+
+             //取消
+             sectCancel.onclick=function(){
+              	for (var i = 0 ; i < inputs.length; i++) {
+                   	 inputs[i].checked = false;
+             	};
+             };
+
+             //反选
+             sectReturn.onclick=function(){
+              	for (var i = 0 ; i < inputs.length; i++) {         
+                   if (inputs[i].checked==true) {
+                   	 inputs[i].checked = false;
+                   }else{
+                     inputs[i].checked = true;
+                   }
+             		
+             	};
+            };
+
+		 }	
+    </script>
+</head> 
+<body>
+    <input type="button" value="全选" id="sectAll">
+    <input type="button" value="取消" id="sectCancel">
+    <input type="button" value="反选" id="sectReturn">
+    <form action="" id="form">
+        <input type="checkbox" name="" id="">
+        <br />
+        <input type="checkbox" name="" id="">
+        <br />
+        <input type="checkbox" name="" id="">
+        <br />
+        <input type="checkbox" name="" id="">
+        <br />
+        <input type="checkbox" name="" id="">
+        <br />
+        <input type="checkbox" name="" id="">
+        <br />
+        <input type="checkbox" name="" id="">
+        <br />
+        <input type="checkbox" name="" id="">
+        <br />
+        <!-- 按照常理，checked属性值为true是选中状态，那么属性值为false就是未选中状态。然而事实是，即便属性值为false，复选框依然是选中状态。
+        其实有这样有一个规律，那就是在HTML中，只要设置checked属性，无论是否赋值，或者赋何种值，复选框都是选中状态。但是在通过JavaScript进行操作的时候，并非如此。 -->
+    </form>
+</body>
+</html>

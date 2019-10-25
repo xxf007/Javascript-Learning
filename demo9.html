@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+        window.onload = function(){
+            var tagNames = document.getElementsByTagName('li');
+            console.log(tagNames);
+            console.dir(tagNames);
+            //console.log()会在浏览器控制台打印出信息
+            //console.dir()可以显示一个对象的所有属性和方法
+            var color = document.getElementById('color');
+            var colorli = color.getElementsByTagName('li');
+            console.log(colorli);
+            console.dir(colorli);
+            for(var i = 0; i < tagNames.length; i++ ){
+                tagNames[i].style.color = "red";
+            }
+            for(li in colorli){
+                console.log(colorli[li]);
+                colorli[li].style.color = "blue";
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <ul id="color">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+</body>
+</html>

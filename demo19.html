@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>换肤-点击事件以及滑入滑出事件</title>
+    <link rel="stylesheet" href="" id="link" type="text/css">
+    <script type="text/javascript">
+        function skin_blue(){
+	        link.href='./css/style-blue.css';
+	    }
+	    function skin_red(){
+	        link.href='./css/style-red.css';
+	    }
+		window.onload=function(){
+			var blue=document.getElementById('blue');
+			var red=document.getElementById('red');
+			var link=document.getElementById('link');
+            
+            // onmouseover 用户鼠标移入元素时触发的事件。并执行onmouseover调用的函数。
+            //onmouseout 用户鼠标移开元素时触发的事件。并执行onmouseout调用的函数。
+            blue.onmouseover=function(){
+            	skin_blue();
+            }
+
+            red.onmouseout=function(){
+            	skin_red();
+            }
+
+
+
+		}
+	
+    </script>
+</head>
+<body>
+    <input type="button" value="蓝" id="blue">
+    <input type="button" value="红" id="red">
+</body>
+</html>

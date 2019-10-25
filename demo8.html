@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片切换</title>
+    <script type="text/javascript">
+    // 把事件放进函数里
+        document.title = '通过js修改title';
+        window.onload = function(){
+            var pre = getId('pre');
+            var next = getId('next');
+            var img = getId('img');
+            var title = getId('title');
+            var flag = 0;
+            next.onclick = function(){
+                flag++;
+                if(flag>5){
+                    flag = 0;
+                }
+                img.src = "img/Layer"+ (16+flag) + ".png";
+                title.innerHTML = "图片" + (1+flag);
+
+            }
+            pre.onclick = function(){
+                flag--;
+                if(flag<0){
+                    flag = 5;
+                }
+                img.src = "img/Layer"+ (16+flag) + ".png";
+                title.innerHTML = "图片" + (1+flag);
+
+            }
+            
+            
+        }  
+         //函数声明 (提升)  
+        function getId(obj){
+            return document.getElementById(obj);
+        }
+        function test(a,b){
+            a = 3;
+            console.log(arguments[0]);
+            b = 4;
+            console.log(arguments[1]);
+            console.log(arguments[2]);
+            //实参有多少个，arguments[]就有多少个,不对应实参不映射
+            //映射规则，不是同一个对象
+
+            //return 终止函数
+            //return 接收返回值/又终止函数又返回值
+        }
+        test(1,2,3);
+        a();//200
+        var a = 100;
+        function a(){
+            console.log(200);
+        }
+        // a(); a is not a function 
+        console.log(a);//100
+        //变量声明提升
+        //函数声明整体提升，优先级高于同名变量（覆盖）
+        
+    </script>
+    <style>
+        .pr{
+            position: relative;
+            width: 250px;
+            height: 250px;
+        }
+        .pre,.next{
+            border: none;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            background: none;
+            outline: none;
+            color: #fff;
+            font-size: 22px;
+        }
+        .pre{
+            left: 0;
+            text-align: left;
+        }
+        .next{
+            right: 0;
+            text-align: right;
+        }
+        img{
+            display: block;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="pr">
+        <input type="button" id="pre" class="pre" name="pre" title="上一张" value="<">
+        <input type="button" value=">" id="next" class="next" name="next" title="下一张">
+        <img src="./img/Layer16.png" alt="" id="img">
+        <p id="title">图片1</p>
+    </div>
+</body>
+</html>

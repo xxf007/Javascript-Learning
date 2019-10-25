@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+    // 把事件放进函数里
+        document.title = '通过js修改title';
+        window.onload = function(){
+            var style = getId('style');
+            var value = getId('value');
+            var submit = getId('submit');
+            var box = getId('box');
+            submit.onclick = function(){
+                 var styleName = style.value;
+                 var valueName = value.value;
+                 box.style[styleName] = valueName;
+            }
+        }  
+         //函数声明 (提升)  
+        function getId(obj){
+            return document.getElementById(obj);
+        }
+    </script>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <input type="text" name="style" id="style">
+        <input type="text" name="value" id="value">
+        <input type="button" value="提交" id="submit">
+    </p>
+    <div id="box">
+
+    </div>
+</body>
+</html>

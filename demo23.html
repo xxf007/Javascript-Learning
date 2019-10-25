@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js-23[style和Css的关系]</title>
+    <style type="text/css">
+        #box{
+            background: #000;
+            width: 200px;
+            height: 200px;
+        }
+        .borderstyle{
+            border: 5px solid blue;
+			color: #fff;
+            background: green;
+            /* 背景会被id选择器中的背景覆盖，优先级不够 */
+        }
+    </style>
+    <script>
+        function setStyle(classname){
+            var box = document.getElementById('box');
+            box.className = classname;
+
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="边框" id="border" onclick="setStyle('borderstyle')">
+    <div id="box">你好：JavaScript</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+		#box{
+			width: 200px;
+			height: 200px;
+			background:red;
+		}
+	</style>
+    <script>       	
+        //1，返回值
+        function show(){
+            return 12;
+        };
+        console.log(show());
+
+        //2，参数
+        function show2(a,b){
+            return a+b;
+        };
+        console.log(show2(66,33));
+
+
+        //3 arguments  //	可变的参数，不定的参数
+        //1、在JavaScript中，arguments对象是比较特别的一个对象，实际上是当前函数的一个内置属性。arguments非常类似Array，但实际上又不是一个Array实例。可以通过如下代码得以证实（当然，实际上，在函数funcArg中，调用arguments是不必要写成funcArg.arguments，直接写arguments即可）。
+        function args(){
+            var result=Math.random();//结果为0-1间的一个随机数(包括0,不包括1) 
+            for(var i=0 ;i<arguments.length ;i++){
+                result=result*arguments[i];
+            }
+            return result;
+        };
+        console.log(args(360));
+        
+        function sum(){
+            return arguments.length;
+        }
+        
+        console.log(sum(1,4,5,6,32,5));
+
+    
+        //CSS函数 arguments用法 
+        function cssarg(){	 
+            if(arguments.length == 2){
+                console.log(arguments[0].style[arguments[1]]);//拿不到css样式表中的属性，只能拿到行内样式
+                console.log(arguments[0].style['width']);
+                return arguments[0].style[arguments[1]];
+            }else{
+                arguments[0].style[arguments[1]] = arguments[2];
+            }
+        }
+        //CSS函数
+        function css(object,name,value){
+            if(arguments.length ==2){
+                return object.style[name];
+            }else{
+                object.style[name] = value;
+            }
+        }
+
+        window.onload=function(){
+            var objectDiv=document.getElementById('box');
+            console.log(cssarg(objectDiv,"background"));
+            //设置数据
+            console.log(css(objectDiv,"width","500px"));
+            css(objectDiv,"background","orange");
+        }
+        // “DOM2 级样式”增强了document.defaultView，提供了getComputedStyle()方法，可以调用最终的样式(嵌入式样式、外部样式表、内联样式综合的样式表现)。
+        // var myDiv = document.getElementsByClassName("reward-code")[0];
+
+        // var computedStyle = document.defaultView.getComputedStyle(myDiv, null);
+
+        // alert(computedStyle.display); //none
+
+        // 兼容IE8及之前版本看这里
+
+        // 获取 css 样式表样式：
+        // js 高程 316页
+    </script>
+</head>
+<body>
+    <div id="box" style="background: red;">
+
+    </div>
+</body>
+</html>

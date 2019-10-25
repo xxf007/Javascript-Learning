@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>定时器的使用</title>
+    <script type="text/javascript">
+		//定时器的作用
+	    //什么是定时器
+        function show(){
+        	alert('a');
+        }
+        setTimeout(show,1000);
+        //setInterval() 间隔型，设置间隔时间，无限次循环
+	    //setInterval(show,1000);
+
+        //setTimeout() 延时器，间隔多少时间之后执行这个函数
+	    //setTimeout(show,1000);
+
+        //定时器的开启和关闭
+        window.onload = function(){
+        	var start = document.getElementById('btnstart');
+        	var end = document.getElementById('btnend');
+        	var box = document.getElementById('box');
+            var closeTime = null;
+            var i = 1;
+
+            start.onclick=function(){
+            	box.style['font-size']='36px';
+            	box.style['color']='red';
+            	box.style['font-family']='微软雅黑';
+            	//点击事件之后。开启定时器，每秒加1
+            	closeTime=setInterval(function(){
+                    box.innerHTML=i++;
+            	},1000)
+            };
+
+            end.onclick=function(){
+            	 //关闭名为：closeTime的定时器
+                 clearInterval(closeTime);
+            };
+
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="开启" id="btnstart">
+    <input type="button" value="结束" id="btnend">
+    <div id="box">
+
+    </div>
+</body>
+</html>
