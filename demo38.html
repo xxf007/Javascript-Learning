@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css"> 
+		body{
+			background-color: #ddd;
+		}
+		#box{
+			width: 600px;
+			height: 50px;
+			margin: 50px auto;
+			color: #000;
+			font-size: 38px;
+		}
+        #box span{
+        	font-family:"微软雅黑";
+        }
+    </style>
+    <script type="text/javascript">
+        function toDou(n){
+            if(n < 10){
+                return '0' + n;
+            }else{
+                return '' + n;
+            }
+        }
+        function toUpper(n){
+            switch(n){
+                case 1:return '一';break;
+                case 2:return '二';break;
+                case 3:return '三';break;
+                case 4:return '四';break;
+                case 5:return '五';break;
+                case 6:return '六';break;
+                case 7:return '日';break;
+            }
+        }
+        window.onload = function(){
+            var oBox = document.getElementById('box');
+            var aSpan = oBox.getElementsByTagName('span');
+
+            function update(){
+                var oDate = new Date();
+                //console.log(oDate);
+                //console.log(typeof oDate); Object            
+                var strGetYear=oDate.getFullYear(); //年
+                var strGetMonth=toDou(oDate.getMonth()+1); //月
+                var strGetDate=toDou(oDate.getDate()); //月
+                var strGetHours=toDou(oDate.getHours());
+				var strGetMinutes=toDou(oDate.getMinutes());
+				var strGetSeconds=toDou(oDate.getSeconds());
+                var strGetDay=toUpper(oDate.getDay());//周
+                var strGetTime=toDou(oDate.getTime());
+                //console.log(strGetTime)
+                var strDateTime = strGetHours+strGetMinutes+strGetSeconds;
+                //console.log(strDateTime);
+                oBox.innerHTML='<p><span>'+strGetYear+'-</span><span>'+strGetMonth+'-</span><span>'+strGetDate+'</span><b>   </b><span>'+strGetHours+':</span><span>'+strGetMinutes+':</span><span>'+strGetSeconds+'</span><span> 星期 '+strGetDay+'</span></p>';
+            }
+            setInterval(update,1000);
+            update(); // 立即执行，去除默认的000000
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+        <span>0</span>
+        <span>0</span>
+        <b>:</b>
+        <span>0</span>
+        <span>0</span>
+        <b>:</b>
+        <span>0</span>
+        <span>0</span>
+    </div>
+</body>
+</html>

@@ -5,8 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style type="text/css"> 
+		body{
+			background-color: #000
+		}
+		#box{
+			width: 500px;
+			height: 30px;
+			margin: 50px auto;
+			color: #fff;
+			font-size: 32px;
+		}
+        #box img{
+        	width: 20px;
+            vertical-align: middle;
+        }
+        p{
+            color:#fff;
+        }
+    </style>
+    <script type="text/javascript">
+        function toDou(n){
+            if(n < 10){
+                return '0' + n;
+            }else{
+                return '' + n;
+            }
+        }
+        window.onload = function(){
+            var oBox = document.getElementById('box');
+            var aImg = oBox.getElementsByTagName('img');
+
+            function update(){
+                var oDate = new Date();
+                //console.log(oDate);
+                //console.log(typeof oDate); Object
+                var strDateTime = toDou(oDate.getHours()) + toDou(oDate.getMinutes()) + toDou(oDate.getSeconds());
+                //console.log(strDateTime);
+                for(var i = 0; i < aImg.length; i++){
+                    aImg[i].src = 'img/numbers_005/' + strDateTime.charAt(i) + '_005.png';
+                    //console.log(strDateTime[i]);
+                }
+            }
+            setInterval(update,1000);
+            update(); // 立即执行，去除默认的000000
+        }
+    </script>
 </head>
 <body>
-    
+    <div id="box">
+        <img src="img/numbers_005/0_005.png" alt="">
+        <img src="img/numbers_005/0_005.png" alt="">
+        ：
+        <img src="img/numbers_005/0_005.png" alt="">
+        <img src="img/numbers_005/0_005.png" alt="">
+        ：
+        <img src="img/numbers_005/0_005.png" alt="">
+        <img src="img/numbers_005/0_005.png" alt="">
+    </div>
 </body>
 </html>
