@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    	window.onload=function(){
+    		var text = document.getElementById('text');
+    		var btn = document.getElementById('btn');           
+            btn.onclick=function(){
+            	//text.value="565456";
+            	//text['value']='abdlgsdj';
+            	//setAttribute 设置
+            	//getAttribute 获取
+            	//removeAttribute 删除
+                console.log(text.getAttribute('value'));
+                text.setAttribute('value','1375825527');
+                console.log(text.attributes);//NamedNodeMap
+                console.log(text.attributes[1]);//value = 1375825527
+                console.log(text.attributes[0]);
+                console.log(text.attributes[1].value);
+                console.log(text.attributes[1].nodeName);
+                console.log(text.attributes[1].nodeValue);
+                //text.removeAttribute('value');
+
+            }
+
+    	}
+    </script>
+</head>
+<body>
+    <input type="text" value="123456" id="text">
+    <input type="button" value="按钮" id="btn">
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>子节点和父节点的操作</title>
+    <style type="text/css">   
+		li{
+			height: 18px;
+			list-style: none;
+		}
+    </style>
+    <script type="text/javascript">
+		window.onload=function(){
+			//子节点的操作
+			var box = document.getElementById('box');
+			 console.log(box.children.length);
+             //childNodes 子节点
+             console.log(box.childNodes);//元素，文本，注释都能拿到
+             //childNodes返回的是节点的子节点集合，包括元素节点、文本节点还有属性节点.
+            // children返回的只是节点的元素节点集合.
+			 for (var i = 0; i < box.children.length; i++) {
+			 		box.children[i].style.background='red';
+			 }
+			//parentNode 父节点
+			var a=box.getElementsByTagName('a');
+			console.log(a[0]);
+			console.log(a[0].parentNode);
+			for (var i = 0; i <a.length; i++) {
+				a[i].onclick=function(event){
+                    event.preventDefault();
+                    //阻止了a的默认事件
+					//隐藏A链接的父级LI节点
+					this.parentNode.style.display="none";
+				}
+			};
+		}
+    </script>
+</head>
+<body>
+    <ul id="box">
+       <li>A<a href="javascript:;">隐藏</a></li>
+       <!-- 去掉a标签的默认行为，跟href="javascript:void(0)"是一样的 -->
+	   <li>B<a href="">隐藏</a></li>
+	   <li>C<a href="">隐藏</a></li>
+	   <li>D<a href="">隐藏</a></li>
+	   <li>E<a href="">隐藏</a></li>
+	   <li>F<a href="">隐藏</a></li>
+	</ul>
+</body>
+</html> 

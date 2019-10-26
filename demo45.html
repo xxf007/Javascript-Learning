@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        ul{
+            list-style: none;
+            padding:0;
+            margin:0;
+            overflow: hidden;
+        }
+        ul li{
+            float: left;
+            list-style: none;
+            background-color: red;
+            margin: 5px;
+            line-height: 25px;
+            color: #fff;
+            padding: 5px;
+        }
+    </style>
+    <script type="text/javascript">
+		window.onload=function(){
+		//创建DOM元素
+		  //createElement(标签名) 创建一个节点
+		  //appendChild(节点)     追加一个节点
+		  //为UL插入LI
+        var btn=document.getElementById('btn');
+        var box=document.getElementById('box');
+        var text=document.getElementById('text');
+        
+        btn.onclick=function(){
+            // 创建一个LI节点存入内存
+        	var li=document.createElement('li');
+        	li.innerHTML = text.value;
+        	//往指定的父类存入这个节点（appendChild()）
+            box.appendChild(li);
+        };
+		}
+    </script>
+</head>
+<body>
+    <input type="text" id="text" >
+	<input type="button"  id="btn" value="创建一个节点">
+	<ul id="box">
+
+	</ul>
+</body>
+</html>

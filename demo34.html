@@ -40,11 +40,36 @@
              }
           }
         ));
+        // function sortdes(a,b){
+        //      if (a<b) {
+        //      	return -1;
+        //      }else if(a>b){
+        //      	return 1;
+        //      }else{
+        //      	return 0;
+        //      }
+        // }
+        // alert(Num.sort(sortdes));
         alert(Num.sort(
            function(a,b){
                return a-b;
            }
-        ))
+        ));//隐式调用toString()方法
+        console.log(Num.toString());
+        // var arr = [
+        //     {name:'zopp',age:0},
+        //     {name:'gpp',age:18},
+        //     {name:'yjj',age:8}
+        // ];
+
+        // function compare(property){
+        //     return function(a,b){
+        //         var value1 = a[property];
+        //         var value2 = b[property];
+        //         return value1 - value2;
+        //     }
+        // }
+        // console.log(arr.sort(compare('age')))
     </script>
 </head>
 <body>
