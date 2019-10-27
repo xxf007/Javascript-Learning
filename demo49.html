@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        li{
+            list-style: none;
+            margin: 5px 0;
+        }
+        a{
+            margin: 0 15px;
+            color: #000;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var form = document.getElementById('form');
+            var btn = document.getElementById('button');
+            var box = document.getElementById('box');
+            var aLi = box.getElementsByTagName('li');
+            var aElement = box.getElementsByTagName('a');
+            btn.onclick = function(){
+                var li = document.createElement('li');
+                li.innerHTML = '<input value="" name="" type="text" /><a href="javascript:;">删除</a>';
+                if (aLi.length>0) {
+                    box.insertBefore(li,aLi[0]);
+                }else{
+                	box.appendChild(li);
+                }
+                for(var i = 0; i< aElement.length ;i++){
+                    aElement[i].onclick = function(){
+                        box.removeChild(this.parentNode);
+                    } 
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- href="javascript:;"就是去掉a标签的默认行为，跟href="javascript:void(0)"是一样的 -->
+    <form id="form">
+		<input type="button" id="button" value="插入一行" name="">
+		<ul id="box">
+			
+		</ul>
+	</form>
+</body>
+</html>

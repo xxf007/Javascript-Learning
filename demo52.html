@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        body{
+            text-align: center;
+        }	
+    </style>
+    <script>
+        window.onload = function(){
+            var Table = document.getElementById('table');
+            var Btn = document.getElementById('button');
+            var sName = document.getElementById('name');
+            var nAge = document.getElementById('age');
+            var bA = Table.getElementsByTagName('a');
+            var oTr;
+            var flag = Table.tBodies[0].rows.length + 1;
+            inita();
+            Btn.onclick = function(){
+                oTr = document.createElement('tr');
+                oTr.innerHTML = "<td>" + flag + "</td>" + "<td>" + sName.value + "</td>" + "<td>" + nAge.value + "</td>" + '<td><a href="javascript:;">删除</a></td>';
+                Table.tBodies[0].appendChild(oTr);
+                flag ++;
+                inita();
+            }
+            function inita(){
+                for(var i = 0; i < bA.length; i ++){
+                    bA[i].onclick=function(){
+                        Table.tBodies[0].removeChild(this.parentNode.parentNode);
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    姓名：<input type="text" id="name">
+	年龄：<input type="text" id="age">
+	<input type="button" id="button" value="添加">
+	<table id="table" border='1' width="500" align="center">
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>姓名</td>
+				<td>年龄</td>
+				<td>操作</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>张三</td>
+				<td>15</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>李四</td>
+				<td>12</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>王五</td>
+				<td>54</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>赵六</td>
+				<td>19</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>孙七</td>
+				<td>26</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>周八</td>
+				<td>29</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>吴九</td>
+				<td>25</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

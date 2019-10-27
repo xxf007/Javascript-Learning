@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>搜索时忽略大小写</title>
+    <style type="text/css">
+        body{
+            text-align: center;
+        }	
+    </style>
+    <script>
+        window.onload = function(){
+            // var Table = document.getElementById('table');
+            // var Btn = document.getElementById('button');
+            // var sName = document.getElementById('name');
+            // var nAge = document.getElementById('age');
+            // var bA = Table.getElementsByTagName('a');
+            // var oTr;
+            // var flag = Table.tBodies[0].rows.length + 1;
+            // inita();
+            // Btn.onclick = function(){
+            //     oTr = document.createElement('tr');
+            //     oTr.innerHTML = "<td>" + flag + "</td>" + "<td>" + sName.value + "</td>" + "<td>" + nAge.value + "</td>" + '<td><a href="javascript:;">删除</a></td>';
+            //     Table.tBodies[0].appendChild(oTr);
+            //     flag ++;
+            //     inita();
+            // }
+            // function inita(){
+            //     for(var i = 0; i < bA.length; i ++){
+            //         bA[i].onclick=function(){
+            //             Table.tBodies[0].removeChild(this.parentNode.parentNode);
+            //         }
+            //     }
+            // }
+            var oTable = document.getElementById('table');
+            var oButton = document.getElementById('button');
+            var oName = document.getElementById('name');
+            var oAge = document.getElementById('age');
+            var aA = document.getElementsByTagName('a');
+            var n=oTable.tBodies[0].rows.length + 1;
+            for (var i = 0; i < aA.length; i++) {
+                aA[i].onclick=function(){
+                    console.log(i+"<"+aA.length);
+                    oTable.tBodies[0].removeChild(this.parentNode.parentNode);
+                }
+            }
+            oButton.onclick=function(){
+            
+                var oTr=document.createElement('tr');
+
+                var oTd=document.createElement('td');
+                oTd.innerHTML = n++;//先等于n 之后再+1;
+                oTr.appendChild(oTd);
+
+                var oTd=document.createElement('td');
+                oTd.innerHTML=oName.value;
+                oTr.appendChild(oTd);
+
+                var oTd=document.createElement('td');
+                oTd.innerHTML=oAge.value;
+                oTr.appendChild(oTd);      
+
+                var oTd=document.createElement('td');
+                oTd.innerHTML='<a href="javascript:;">删除</a>';
+                oTr.appendChild(oTd);  
+                console.log(aA.length);//7
+                oTable.tBodies[0].appendChild(oTr);
+                console.log(aA.length);//8
+                //存在一个未解决的BUG。无法删除最后一条 (先把oTr节点加入table，不然先拿到了aA的length就是没加之前的)
+                //存在一个未解决的BUG。必须要先添加一行，才能删除默认的行(先把a的onclick在外部初始化，而不是btn点击之后再初始化，可以封装成函数)
+                for (var i = 0; i < aA.length; i++) {
+                    aA[i].onclick=function(){
+                        console.log(i+"<"+aA.length);
+                        oTable.tBodies[0].removeChild(this.parentNode.parentNode);
+                    }
+                }
+                console.log(aA.length);//8
+                //HTML DOM中的 HTMLCollection 是即时更新的；当其所包含的文档结构发生改变时，它会自动更新
+            };
+
+            //搜索
+            var oSearch = document.getElementById('search');
+            oSearch.onclick=function(){
+                for (var i = 0 ; i < oTable.tBodies[0].rows.length ; i++) {      
+                    //toLowerCase 英文强制转小写
+                    //搜索的时候用于忽略大小写
+                    var strTable=oTable.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase();
+                    var strValue=oName.value.toLowerCase();
+
+                    if ( strTable == strValue) {
+                        oTable.tBodies[0].rows[i].style.background='red';
+                    }else{
+                        oTable.tBodies[0].rows[i].style.background='';
+                    }
+                }
+
+            };
+            
+        }
+    </script>
+</head>
+<body>
+    姓名：<input type="text" id="name">
+	年龄：<input type="text" id="age">
+    <input type="button" id="button" value="添加">
+    <input type="button" id="search" value="搜索">
+	<table id="table" border='1' width="500" align="center">
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>姓名</td>
+				<td>年龄</td>
+				<td>操作</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>张三</td>
+				<td>15</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>李四</td>
+				<td>12</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>王五</td>
+				<td>54</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>赵六</td>
+				<td>19</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>孙七</td>
+				<td>26</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>周八</td>
+				<td>29</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>吴九</td>
+				<td>25</td>
+				<td><a href="javascript:;">删除</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

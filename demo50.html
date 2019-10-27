@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        td{
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var Table = document.getElementById('table');
+            console.log(Table);
+            console.dir(Table);
+            alert(Table.tBodies[0].rows[1].cells[1].innerHTML);
+            console.log(Table.tBodies[0]);
+            console.log(Table.tHead);
+            console.log(Table.tHead.rows[0].cells[1].innerHTML);
+        }
+    </script>
+</head>
+<body>
+    <table id="table" border="1" width="500" align="center">
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>姓名</td>
+				<td>年龄</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>张三</td>
+				<td>15</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>李四</td>
+				<td>12</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>王五</td>
+				<td>54</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>赵六</td>
+				<td>19</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>孙七</td>
+				<td>26</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>周八</td>
+				<td>29</td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>吴九</td>
+				<td>25</td>
+			</tr>
+        </tbody>
+    </table>
+</body>
+</html>

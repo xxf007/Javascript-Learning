@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        ul{
+            list-style: none;
+            padding:0;
+            margin:0;
+            overflow: hidden;
+        }
+        ul li{
+            list-style: none;
+            background-color: red;
+            margin: 5px;
+            line-height: 25px;
+            color: #fff;
+            padding: 5px;
+        }
+    </style>
+    <script type="text/javascript">
+		window.onload=function(){
+		//创建DOM元素
+		  //createElement(标签名) 创建一个节点
+		  //appendChild(节点)     追加一个节点
+        var box = document.getElementById('box');
+        var aLi = box.getElementsByTagName('li');
+        var btna = box.getElementsByTagName('a');
+        for(var i = 0;i < btna.length; i++){
+            btna[i].onclick=function(){
+                //this.parentNode
+       	  	   //当前的this.parentNode的父节点是LI、所以我们删除的也就是ID-BOX下面的LI元素
+               box.removeChild(this.parentNode);
+		    }
+        }
+        }
+    </script>
+</head>
+<body>
+    <ul id="box">
+        <li>a<a href="javascript:;">del</a></li> 
+        <li>b<a href="javascript:;">del</a></li>
+        <li>c<a href="javascript:;">del</a></li>
+        <li>s<a href="javascript:;">del</a></li>
+        <li>d<a href="javascript:;">del</a></li>
+        <li>f<a href="javascript:;">del</a></li>
+        <li>n<a href="javascript:;">del</a></li>
+     </ul>
+</body>
+</html>
