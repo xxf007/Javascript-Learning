@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js运动2</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 200px;
+            height: 200px;
+            border:1px solid #000;
+            background-color:red;
+            position: absolute;
+            left: 0;
+            border-radius: 50%;
+        }
+        #line{
+            width: 1px;
+            height: 600px;
+            background-color: #000;
+            left: 1000px;
+            top:0;
+            position: absolute;
+        }
+        input[type="text"]{
+            display: block;
+            width: 450px;
+            margin: 10px;
+        }
+    </style>
+    <script>
+        var timer = null;
+        function startMove(){
+            var box = document.getElementById('box');
+            var Speed = document.getElementById('speed');
+            var offsetLeft = document.getElementById('offsetLeft');
+            clearInterval(timer);
+            timer = setInterval(function(){
+                var speed = (1000 - box.offsetLeft )/10;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                Speed.value = "speed速度变化：" + speed ;
+                //Math.ceil向上取整
+             	//Math.fo向上取整
+             	//当speed这个运动速度大度于的时候，向上取整，当小于0的时候，也就是负数的时候，向下取整
+             	//只要用了缓冲运动的时候。必须取整
+                offsetLeft.value = "box.offsetLeft速度变化：" + box.offsetLeft;
+                box.style.left=box.offsetLeft+speed+"px";
+                console.log(box.offsetLeft);
+                //到了之后还是一直在运行
+                console.log(Math.floor(-0.1));
+                console.log(Math.ceil(-0.1));
+            },30)
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="speed">
+    <input type="text" id="offsetLeft">
+    <input type="button" value="开始滚" id="btn" onclick="startMove()">
+    <div id="box"></div> 
+    <div id="line"></div>
+</body>
+</html>

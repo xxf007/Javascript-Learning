@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动态控制运动走向</title>
+    <style type="text/css">
+        div{
+            width:250px;
+            height: 250px;
+            background-color: red;
+            margin: 10px;
+            float: left;
+            
+            /* filter:alpha(opacity=30); 兼容IE*/
+        }
+        div img{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            var oDiv = document.getElementsByTagName('div');
+            oDiv.timer = null;
+            console.log(oDiv[0].offsetHeight);
+            console.log(oDiv[0].offsetLeft);
+            oDiv[0].onmouseover = function(){
+                startMove(this,500);
+            }
+            oDiv[0].onmouseout = function(){
+                startMove(this,250);
+            }
+        }
+        function startMove(obj,nTarget){
+            //关闭自身物体的定时器
+            clearInterval(obj.timer);
+            //开启当前点中物体的定时器
+            obj.timer=setInterval(function(){
+                   //定义变量，计算一下速度
+                   //让目标减去这个alpha的值
+                   //除6让运动缓冲
+                   var speed = (nTarget - obj.offsetHeight)/6;
+                   speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                   //正数向上取/负数向下取 Math.floor(-0.1) -1
+                   if (obj.offsetHeight == nTarget) {
+                   	    clearInterval(obj.timer);
+                   }else{
+                   	    obj.style.height = obj.offsetHeight + speed + 'px';
+                   }
+            },30)
+        }
+    </script>
+</head>
+<body>
+    <div><img src="img/avatar_1.jpg"></div>
+	<div><img src="img/avatar_2.jpg"></div>
+	<div><img src="img/avatar_3.jpg"></div>
+	<div><img src="img/avatar_4.jpg"></div>
+</body>
+</html>

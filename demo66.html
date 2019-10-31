@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 200px;
+            height: 200px;
+            border:1px solid #000;
+            background-color:red;
+            position: absolute;
+            left: 0;
+            border-radius: 50%;
+        }
+        #line{
+            width: 1px;
+            height: 600px;
+            background-color: #000;
+            left: 800px;
+            top:0;
+            position: absolute;
+        }
+        #line2{
+            width: 1px;
+            height: 600px;
+            background-color: #000;
+            left: 1200px;
+            top:0;
+            position: absolute;
+        }
+        input[type="text"]{
+            display: block;
+            width: 500px;
+            margin: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        var timer = 'null';
+        function startMove(nTarget){
+            box=document.getElementById('box');
+            Speed = document.getElementById('speed');
+            offsetLeft = document.getElementById('offsetLeft');
+            mathAbs = document.getElementById('mathAbs');
+            clearInterval(timer);
+            timer = setInterval(function(){        
+                var speed;
+                if (box.offsetLeft < nTarget) {
+                    speed = 8;
+                }else{
+                    speed = -8;
+                };
+                Speed.value = "speed的速度变化是" + speed;
+                offsetLeft.value =  "box.offsetLeft变化：" + box.offsetLeft;
+                mathAbs.value = "绝对值：" + Math.abs(nTarget - box.offsetLeft);
+
+                if (Math.abs(nTarget-box.offsetLeft)<=8) {
+                    clearInterval(timer);
+                    box.style.left = nTarget + 'px';
+                }else{
+                    box.style.left = box.offsetLeft + speed + "px";
+                };
+            },30);
+        };
+
+    </script>
+</head>
+<body>
+    <input type="text" id="speed">
+    <input type="text" id="offsetLeft">
+    <input type="text" id="mathAbs">
+    <input type="button" value="开始滚到800" id="btn" onclick="startMove(800)">
+    <input type="button" value="开始滚到1200" id="btn" onclick="startMove(1200)">
+    <div id="box"></div> 
+    <div id="line"></div>
+    <div id="line2"></div>
+</body>
+</html>

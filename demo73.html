@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js-73仿FLASH图片滚动效果</title>
+    <link rel="stylesheet" href="./css/demo73.css">
+    <script>
+        // var a = 2;
+        // console.log(a instanceof Number);
+        //不能检测基本类型，返回的都是false;
+        // var arr = [];
+        // for(var i = 0; i < 10;i++){
+        //     arr[i] = function(m){
+        //         return function(){
+        //             return m;
+        //         };
+        //     }(i);
+        // }
+        // console.log(arr[1]());
+        // var arr = [];
+        // console.log(arr.length);//0
+        // console.log(arr[0]);//0
+        // console.log(Boolean(arr[0]))//false
+        // console.log(arr.length);//0
+        // console.log(Boolean(arr));//true
+        function getStyle(obj,name){
+            if(obj.currentStyle){
+                return obj.currentStyle[name];
+            }else{
+                return getComputedStyle(obj,null)[name];
+            }
+        }
+        function startMove(obj,attr,nTar){
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function(){
+                var cur;
+                if(attr == 'opacity'){
+                    //Math.round
+                    //这里需要用一个四舍五入取整的方法、去除小数点
+                    //计算机有些计算是有BUG问题的
+                    //比如alert(0.07*100);
+                    cur = Math.round(getStyle(obj,attr)*100); 
+
+                }else{
+                    cur = getStyle(obj,attr);          
+                }
+                var speed = (nTar - cur)/6;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                //console.log(spped);
+                if (cur == nTar) {
+                    clearInterval(obj.timer);
+                }else{
+                    if (attr=='opacity') {
+                        cur += speed;
+                        obj.style.opacity=cur/100;
+                    }else{
+                        obj.style[attr] = cur + speed + 'px';
+                        //console.log(cur+speed);
+                    }
+                }
+            },30)
+        }
+        
+    </script>
+</head>
+<body>
+    <div id="banner">
+        <a href="javascript:;" class="pre"></a>
+        <a href="javascript:;" class="next"></a>
+        <ul class="imgbox">
+            <li>
+                <a href="javascript:;">
+                    <img src="img/avatar_1.jpg" alt="">
+                </a>
+                <strong>标题1</strong>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <img src="img/avatar_2.jpg" alt="">
+                </a>
+                <strong>标题2</strong>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <img src="img/avatar_3.jpg" alt="">
+                </a>
+                <strong>标题3</strong>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <img src="img/avatar_4.jpg" alt="">
+                </a>
+                <strong>标题4</strong>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <img src="img/avatar_5.jpg" alt="">
+                </a>
+                <strong>标题5</strong>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <img src="img/user-avatar.jpg" alt="">
+                </a>
+                <strong>标题6</strong>
+            </li>
+        </ul>
+        <div class="subnav">
+            <ul class="simgbox">
+                <li>
+                    <a href="javascript:;">
+                        <img src="img/avatar_1.jpg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="img/avatar_2.jpg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="img/avatar_3.jpg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="img/avatar_4.jpg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="img/avatar_5.jpg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="img/user-avatar.jpg" alt="">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

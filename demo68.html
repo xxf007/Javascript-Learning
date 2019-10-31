@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+		div{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			margin: 10px;
+		}
+		div:first-child{
+			background-color: yellow;
+		}
+		div:nth-child(2){
+			background-color: green;
+		}
+		div:last-child{
+			background-color: blue;
+		}
+    </style>
+    <script>
+        // var timer = null;
+        // window.onload = function(){
+        //     var oDiv = document.getElementsByTagName('div');
+        //     for(var i = 0; i < oDiv.length; i ++){
+        //         //给每个div都设置一个定时器
+                
+        //         oDiv[i].onmouseover = function(){            
+        //             startMove.call(this,400);
+        //         }
+        //         oDiv[i].onmouseout = function(){
+        //             startMove.call(this,100);;
+        //         }
+
+        //     }
+        // }
+        // function startMove(nTarget){
+        //     clearInterval(timer);     
+        //     var that = this;
+        //     timer=setInterval(function(){
+        //         var speed=(nTarget - that.offsetWidth)/6;
+        //         speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+        //         if (that.offsetWidth == nTarget) {
+        //             clearInterval(timer);
+        //         }else{
+        //             that.style.width = that.offsetWidth + speed + "px";
+        //         }
+        //     },30)
+        // }
+        // 共用一个定时器导致上个定时器执行到一半就被会清除并执行下一个计时器
+        window.onload=function(){
+            var aDiv = document.getElementsByTagName('div');
+			for (var i = 0; i <aDiv.length ; i++) {
+				  //给每个div都设置一个定时器
+				  aDiv[i].timer=null;
+                  aDiv[i].onmouseover=function(){
+                       startMove(this,400);
+                  };
+                  aDiv[i].onmouseout=function(){
+                       startMove(this,100);
+                  };
+			};
+		};
+
+		function startMove(obj,iTarget){
+            clearInterval(obj.timer);       
+            obj.timer=setInterval(function(){
+                var speed=(iTarget-obj.offsetWidth)/6;
+                speed=speed>0?Math.ceil(speed):Math.floor(speed);
+
+                if (obj.offsetWidth == iTarget) {
+                    clearInterval(obj.timer);
+                }else{
+                    obj.style.width=obj.offsetWidth+speed+'px';
+                }
+            },30)
+		}
+    </script>
+</head>
+<body>
+    <div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>

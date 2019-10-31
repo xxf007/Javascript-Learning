@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片淡入淡出</title>
+    <style type="text/css">
+		div{
+			width: 250px;
+			height:250px;
+			background-color: red;
+			margin: 10px;
+			float: left;
+			opacity: 0.3;
+            border: 1px solid #000;
+		}	
+		div img{
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+	<script>
+		function getStyle(obj,name){
+			if(obj.currentStyle){
+				return obj.currentStyle[name];
+			}else{
+				return getComputedStyle(obj,null)[name];
+			}
+		}
+		window.onload = function(){
+			var oDiv = document.getElementsByTagName('div');
+			for(var i = 0;i < oDiv.length; i++){
+				oDiv[i].timer = null;
+				oDiv[i].onmouseover = function(){
+					startMove(this,'opacity',100);
+				}
+				oDiv[i].onmouseout = function(){
+					startMove(this,'opacity',30);
+				}
+			}
+		}
+		function startMove(obj,attr,nTar){
+			clearInterval(obj.timer);
+			obj.timer = setInterval(function(){
+				//alert(0.07*100);
+				var cur = Math.round(getStyle(obj,attr)*100);
+				var speed = (nTar - cur)/6;
+				speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+				if(cur == nTar){
+					clearInterval(obj.timer);
+				}else{
+					if(attr == 'opacity'){
+						cur += speed;
+						console.log(cur/100);
+						obj.style.opacity = cur/100;
+					}else{
+						obj.style[attr] = cur + speed + 'px';
+					}
+				}
+			},30)
+		}
+	</script>
+</head>
+<body>
+    <div><img src="img/avatar_1.jpg"></div>
+	<div><img src="img/avatar_2.jpg"></div>
+	<div><img src="img/avatar_3.jpg"></div>
+	<div><img src="img/avatar_4.jpg"></div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>邮箱验证</title>
+    <style>
+        p{
+            color: red;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var btn = document.getElementById('button');
+            var email = document.getElementById('email');
+            var title = document.getElementById('title');
+            
+            btn.onclick = function(){
+                var reg = /^[A-Za-z0-9._%-]+@([A-Za-z0-9-]+\.)[A-Za-z]{2,4}$/g;
+                if(reg.test(email.value)){
+                    title.innerHTML = '格式正确';
+                }else{
+                    title.innerHTML = '格式错误';
+                }
+            }
+            //setInterval(btn.onclick,30);
+            //或者用onchange事件onkeyup
+            var email2 = document.getElementById('email2');
+            var title2 = document.getElementById('title2');
+            email2.onkeyup = function(){
+                var reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/g;
+                if(reg.test(email2.value)){
+                    title2.innerHTML = '格式正确';
+                }else{
+                    title2.innerHTML = '格式错误';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="email" value="">
+    <input type="button" id="button" value="提交">
+    <p id="title"></p>
+    <h2>邮箱验证</h2>
+    <input type="text" id="email2" value="">
+    <p id="title2"></p>
+</body>
+</html>

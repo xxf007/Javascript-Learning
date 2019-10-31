@@ -10,14 +10,15 @@
 			background-color: #000
 		}
 		#box{
-			width: 500px;
-			height: 30px;
+			width: 800px;
+			height: 300px;
 			margin: 50px auto;
 			color: #fff;
-			font-size: 32px;
+			font-size: 39        px;
+            text-align: center;
 		}
         #box img{
-        	width: 20px;
+        	width: 68px;
             vertical-align: middle;
         }
         p{
@@ -40,28 +41,42 @@
                 var oDate = new Date();
                 //console.log(oDate);
                 //console.log(typeof oDate); Object
-                var strDateTime = toDou(oDate.getHours()) + toDou(oDate.getMinutes()) + toDou(oDate.getSeconds());
+                var strGetYear=oDate.getFullYear(); //年
+                var strGetMonth=toDou(oDate.getMonth()+1); //月
+                var strGetDate=toDou(oDate.getDate()); //日
+                var strDateTime = strGetYear + strGetMonth + strGetDate + toDou(oDate.getHours()) + toDou(oDate.getMinutes()) + toDou(oDate.getSeconds());
                 //console.log(strDateTime);
                 for(var i = 0; i < aImg.length; i++){
-                    aImg[i].src = 'img/numbers_005/' + strDateTime.charAt(i) + '_005.png';
+                    aImg[i].src = 'img/numbers_006/' + strDateTime.charAt(i) + '_006.png';
                     //console.log(strDateTime[i]);
                 }
             }
             setInterval(update,1000);
-            update(); // 立即执行，去除默认的000000
+            update(); // 立即执行，去除默认的时间间隔
         }
     </script>
 </head>
 <body>
     <div id="box">
-        <img src="img/numbers_005/0_005.png" alt="">
-        <img src="img/numbers_005/0_005.png" alt="">
+        <img src="img/numbers_006/0_006.png" alt="">
+        <img src="img/numbers_006/0_006.png" alt="">
+        <img src="img/numbers_006/0_006.png" alt="">
+        <img src="img/numbers_006/0_006.png" alt="">
+        年
+        <img src="img/numbers_006/0_006.png" alt="">
+        <img src="img/numbers_006/0_006.png" alt="">
+        月
+        <img src="img/numbers_006/0_006.png" alt="">
+        <img src="img/numbers_006/0_006.png" alt="">
+        日
+        <img src="img/numbers_006/0_006.png" alt="">
+        <img src="img/numbers_006/0_006.png" alt="">
         ：
-        <img src="img/numbers_005/0_005.png" alt="">
-        <img src="img/numbers_005/0_005.png" alt="">
+        <img src="img/numbers_006/0_006.png" alt="">
+        <img src="img/numbers_006/0_006.png" alt="">
         ：
-        <img src="img/numbers_005/0_005.png" alt="">
-        <img src="img/numbers_005/0_005.png" alt="">
+        <img src="img/numbers_006/0_006.png" alt="">
+        <img src="img/numbers_006/0_006.png" alt="">
     </div>
 </body>
 </html>

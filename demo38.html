@@ -27,6 +27,7 @@
             }else{
                 return '' + n;
             }
+            //return n > 10 ? n : '0' + n
         }
         function toUpper(n){
             switch(n){
@@ -49,7 +50,7 @@
                 //console.log(typeof oDate); Object            
                 var strGetYear=oDate.getFullYear(); //年
                 var strGetMonth=toDou(oDate.getMonth()+1); //月
-                var strGetDate=toDou(oDate.getDate()); //月
+                var strGetDate=toDou(oDate.getDate()); //日
                 var strGetHours=toDou(oDate.getHours());
 				var strGetMinutes=toDou(oDate.getMinutes());
 				var strGetSeconds=toDou(oDate.getSeconds());

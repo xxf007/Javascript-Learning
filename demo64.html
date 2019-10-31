@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+		#rb-box{
+			width: 250px;
+			height: 250px;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			background-color:red;
+		}
+		#close{
+			position: absolute;
+			left: 0;
+			top: 0;
+			color: #fff;
+			background-color: #000;
+			padding: 5px 15px;
+			cursor: pointer;
+		}
+    </style>
+    <script>
+        function close_ad(){
+           //关闭窗口
+           var rb_box = document.getElementById('rb-box');            
+           rb_box.style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <div id="rb-box">
+        <span id="close" onclick="close_ad()">关闭</span>
+        <!-- 标识符指变量/函数/属性的名字或者函数的参数
+        1.第一个字符必须是一个字母或下划线_或者美元符号$
+        2.其他字符可以是字母/下划线/美元符号或数字
+        ！不能用-符号
+        驼峰命名 -->
+	</div>
+</body>
+</html>

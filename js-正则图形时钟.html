@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>时间</title>
+    <style>
+        time{
+            padding: 0 3px;
+        }
+        .abc{
+            padding:0 15px
+        }
+        img{
+            width:40px
+        }
+    </style>
+</head>
+<body>
+    <div id="showTime">423424
+    </div>
+    <script>
+       function zero(n){
+           return n<10?'0'+n:n;
+       }
+       
+        function runTime(){
+            var oDate = new Date();
+            // 获取一个四位的年月份
+            var getYear = oDate.getFullYear(),
+                getMonth = oDate.getMonth() + 1,
+                getDate = oDate.getDate(),
+                getHours = oDate.getHours(),
+                getMinutes = oDate.getMinutes(),
+                getSeconds = oDate.getSeconds();
+            
+            var runStrTime = '<time>'+getYear+'</time>' + 
+            '<span>年<span>' + 
+            '<time>'+zero(getMonth)+'</time>' + 
+            '<span>月<span>' +
+            '<time>'+zero(getDate)+'</time>' + 
+            '<span>日<span>' +
+            '<span class="abc"><span>' +
+            '<time>'+zero(getHours)+'</time>' + 
+            '<span>:<span>' + 
+            '<time>'+zero(getMinutes)+'</time>' + 
+            '<span>:<span>' +
+            '<time>'+zero(getSeconds)+'</time>'
+     
+                var verify = /[^0-9]/ig;
+                var echoTime = runStrTime.replace(verify,"");//不是数字的全部用空字符串替代
+                console.log(echoTime);
+                console.log(typeof echoTime);
+                console.log(echoTime.length);//String基本包装类也有length属性，字符数
+                var imgVerify = new RegExp(echoTime,'ig')
+                var result = '';
+                for (let index = 0; index < echoTime.length; index++) {
+                    var element = echoTime.replace(imgVerify,'<img src="images/'+echoTime[index]+'.png">')
+                    result = result + element;
+                }
+                return  result
+        
+        }
+        var showTime = document.getElementById('showTime');
+        setInterval(function(){
+            showTime.innerHTML = runTime();
+        },1000);
+        showTime.innerHTML = runTime();
+    </script>
+</body>
+</html>
