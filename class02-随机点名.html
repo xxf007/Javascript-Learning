@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            background-color: cornsilk;
+        }
+        #box{
+            /* 1vh = 高度的百分之一  兼容性差*/
+            /* css函数 calc rgba */
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        .name{
+            display: block;
+            float: left;
+            width: 100px;
+            height: 50px;
+            background-color: skyblue;
+            margin: 0 20px 20px;
+            text-align: center;
+            border: 1px solid greenyellow;
+            line-height: 50px;
+        }
+        #btn{
+            width: 60px;
+            height: 30px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -30px;
+            margin-top: -15px;
+            /* left:calc(50% - 30px); */
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="点名" id="btn">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+    </div>
+    <script>
+        var arr = ['黄总','孙大牛','陈gay总','聪少','郭大帅','康书记','陆总','黄总nb','ego丸','hzzzzz','金屋藏娇'];
+        var timer = null;
+        var btn = document.getElementById('btn');
+        var box = document.getElementById('box');
+        for(var k = 0;k < 3 ;k++){
+            for(var i = 0;i<arr.length;i++){
+                var eSpan = document.createElement('span');
+                eSpan.innerHTML = arr[i];
+                eSpan.className = 'name';
+                box.appendChild(eSpan);
+            }
+        } 
+        //1000ms = 1s
+        var Span = document.getElementsByTagName('span');
+        btn.onclick = function(){
+            if(this.value == '点名'){
+                timer = setInterval(function(){
+                    for(var i = 0;i<arr.length*3;i++){
+                        Span[i].style.background = '';
+                    }
+                    var flag = Math.round(Math.random()*arr.length*3);
+                    if(flag > arr.length*3 -1){
+                        flag = arr.length*3 -1;
+                    }//也可以放在这里做判断
+                    if(flag == 0&&flag == arr.length){
+                        flag = flag + 1;
+                    }
+                    Span[flag].style.background = 'red';
+                },300)
+                this.value = '停止';
+            }else{
+                clearInterval(timer);
+                // for(var i = 0;i < arr.length*3;i++){
+                //     if(Span[i].style.background == 'red'){
+                //         if(Span[i].innerHTML == '黄总'){
+                //             Span[i].style.background = '';
+                //             Span[i+1].style.background = 'red'
+                //         }
+                //     }
+                // }
+                this.value = '点名';
+            }
+        }
+    </script>
+</body>
+</html>

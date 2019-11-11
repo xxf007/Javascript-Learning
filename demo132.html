@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        function setCookie(name,value,nDay){
+            var oDate = new Date();
+            oDate.setDate(oDate.getDate() + nDay);
+            document.cookie = name + '=' + value + ';expores=' + oDate;
+            // alert(document.cookie);
+        }
+        function getCookie(name){
+            //把cookie拆成数组
+            var value;
+            var arr = document.cookie.split(';');
+            //或者这里用.split('; ')
+            for(var i = 0;i < arr.length; i++){
+                //再次拆分
+                var arr2 = arr[i].trim().split('=');
+                //string.trim()去两边的空格
+                if(arr2[0] == name){
+                    value = arr2[1];
+                    break;
+                }
+            }
+            return value;
+        }
+        function removeCookie(name){
+            setCookie(name,1,-1);
+        }
+        setCookie('name','xfff',1);
+        setCookie('pass','0007',12);
+        alert(getCookie('name'));
+        alert(getCookie('pass'));
+        removeCookie('name');
+        alert(getCookie('name'));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

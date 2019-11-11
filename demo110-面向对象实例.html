@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        #box{
+            width: 600px;
+            border: 1px solid #ddd;
+            height: 500px;
+        }
+        #box input{
+            width: 33.33%;
+            background: #ddd;
+            color: #fff;
+            float: left;
+            border: 0;
+            padding: 5px 0;
+            outline: 0;
+        }
+        #box input:hover{
+            background: red;
+        }
+        #box input.active{
+            background-color: red;
+        }
+        #box div{
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            display: none;
+        }
+    </style>
+    <script type="text/javascript">
+        /*
+           把面向过程的程序，改写成面向对像的形式
+              原则：不能有函数套函数，可以有全局变量
+           过程
+               onload  -> 构造函数
+               全局变量 -> 属性
+               函数 -> 方法
+            改错
+               this 事件 闭包 传参
+            对像与闭包
+               通过闭包传递this
+        */
+       //先写一个最简单的选项卡，用过程的方式
+        //在书写面向对像的时候。不能有函数套函数，所以这个时候，我们要把点击事件的函数移出onload这个函数外面去,做到函数没有套函数
+
+        //这里同时也就需要设置全局变量。不然的话，在fnclick函数中的变量就没办法使用了
+        var aBtn = null;
+        var aDiv = null; 
+        window.onload = function(){
+            var oDiv = document.getElementById('box');
+            aBtn = oDiv.getElementsByTagName('input');
+            aDiv = oDiv.getElementsByTagName('div');
+            for(var i = 0;i < aBtn.length;i++){
+                aBtn[i].index = i;
+                aBtn[i].onclick = btnClick;
+            }
+        }
+        function btnClick(){
+            for(var i = 0; i< aBtn.length;i++){
+                aBtn[i].className = '';
+                aDiv[i].style.display = 'none'
+            }
+            this.className = 'active';
+            aDiv[this.index].style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="1" class="active" >
+        <input type="button" value="2">
+        <input type="button" value="3">
+        <div style="display: block;">1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</body>
+</html>

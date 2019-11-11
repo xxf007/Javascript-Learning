@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script text="text/javascript">
+        window.name = 'xxxf';
+        var o = {
+            name:'henery'
+        }
+        function sayName(){
+            console.log(this.name);
+        }
+        sayName();
+        o.sayName = sayName;
+        o.sayName();
+        var box = {
+            name:'徐锋',
+            sayName:function(){
+                alert(this);
+                alert(this.name)
+            }
+        }
+        box.sayName();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

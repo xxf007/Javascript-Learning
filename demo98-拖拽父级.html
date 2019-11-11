@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #inbox{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+        }
+        #box{
+            width: 600px;
+			height: 600px;
+			background: #ccc;
+			position: relative;
+            /* margin: 20px; */
+        }
+        body{
+            height: 3000px;
+            margin: 10px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var box = document.getElementById('box');
+            var inBox = document.getElementById('inbox');
+            var disX=0;
+            var disY=0;
+            inBox.onmousedown = function(e){
+                var oEvent = e||window.event;
+                inBox.style.background = 'blue';
+                disX = oEvent.clientX - inBox.offsetLeft;
+                disY = oEvent.clientY - inBox.offsetTop;
+                document.onmousemove = function(e){
+                    var oEvent = e||window.event;
+                    inBox.style.background = 'yellow';
+                    var l = oEvent.clientX - disX;
+                    var t = oEvent.clientY - disY;
+                    var r = box.offsetWidth - inBox.offsetWidth;
+                    var b = box.offsetHeight - inBox.offsetHeight;
+                    if(l < 0 ){
+                        l = 0;
+                    }
+                    if(l > r ){
+                        l = r;
+                    }
+                    if(t < 0 ){
+                        t = 0;
+                    }
+                    if(t > b ){
+                        t = b;
+                    }
+                    inBox.style.left = l + 'px';
+                    inBox.style.top = t + 'px';
+                    
+                }
+                document.onmouseup = function(){
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                }
+            }     
+            // console.log(box.offsetWidth);   //600 没有算上maigin
+            // console.log(document.documentElement.offsetHeight);//3020 = 3000 + 10 + 10
+            // console.log(document.documentElement.clientHeight);//937
+            // console.log(document.documentElement.scrollHeight);//3020
+            // console.log(document.body.offsetHeight);//3000
+            // console.log(document.body.clientHeight);//3000
+            
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+        <div id="inbox">
+
+        </div>
+    </div>
+</body>
+</html>

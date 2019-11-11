@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //1构造函数也是函数  构造函数的第一个字母应该大写
+        //构造函数没有new Object
+        //构造函数不需要引用返回，由系统自动完成操作
+        //必须使 new 构造函数名（） 比如：new Hello() 这里的Hello 首字母也是大写的
+        //必须使用 new 运算符
+        //构造函数的第一个字母应该大写
+        function Hello(userName,userAge){
+            this.userName = userName;
+            this.userAge = userAge;
+            this.sayBy = function(){
+                return this.userName + '--' + this.userAge;
+            }
+            this.sayName = sayName;
+        }
+        function sayName(){
+            console.log(this.userName);
+        }
+        var hello = new Hello('xxf','007');
+        var hello1 = new Hello('xf','006');
+        alert(hello.sayBy());
+        hello.sayName();
+        alert(hello1 instanceof Array);
+        alert(hello instanceof Hello);
+        alert(hello.sayBy == hello1.sayBy);
+        alert(hello1.sayName == hello.sayName);
+        var o = new Object();
+	    Hello.call(o,'对像冒充的',88); //使用call方法，来使现对像冒充
+	    alert(o.sayBy());
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

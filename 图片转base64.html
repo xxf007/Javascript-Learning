@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片转base64</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+    integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+    crossorigin="anonymous"></script>
+</head>
+<body>
+    <input accept="image/*" name="upimage" id="upload_file" type="file">
+    <input type="text" id="base64_output" name="Word">
+    <!-- 数据链接 -->
+    <script>
+        $('#upload_file').on('change',function(){
+            getBase64();
+        })
+        function getBase64(){
+            var file = $('#upload_file')[0].files[0];
+            console.log(file);
+            reader = new FileReader(); //本地预览
+            reader.onload = function(){
+                var ImgFileSize = reader.result.substring(reader.result.indexOf(",") + 1);
+                console.log(ImgFileSize);
+                $("#base64_output").val(reader.result);
+                $('body').append('<canvas id="canvas" width="400px" height="300px" style="border: 1px solid red;"></canvas>');
+                var img = new Image();
+                var ctx = $("#canvas")[0].getContext('2d');
+                img.src = reader.result;
+                img.onload = function(){
+                    ctx.drawImage(img,-100,0);
+                    console.log($('#base64_output').val().length);
+                }
+            }
+            reader.readAsDataURL(file); 
+            // Base64
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background: red;
+            border-radius: 50%;
+            
+        }
+    </style>
+    <script>
+        document.onmousemove = function(e){
+            var oEvent = e||window.event;
+            var oDiv = document.getElementById('box');
+            oDiv.style.top = oEvent.clientY + 'px';
+            oDiv.style.left = oEvent.clientX + 'px';
+            document.documentElement.style.cursor = "none";
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+</body>
+</html>

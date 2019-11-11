@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+         //用函数封装对象
+         //构造函数
+         function createPerson(name,qq){
+            this.name = name;
+            this.qq = qq;
+            this.showName = function(){
+                alert('我的名字叫' + this.name);
+            }
+            this.showQQ = function(){
+                alert('我的QQ:' + this.qq);
+            }
+         }
+         var obj = new createPerson('xf','007');
+         var obj2 = new createPerson('xxf','008');
+         obj.showName();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

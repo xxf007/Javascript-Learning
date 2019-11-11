@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        #div{
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            bottom: 0;
+            right: 0;
+            z-index:99;
+            background-color: red;
+        }
+        #left{
+            position: absolute;
+            width: 150px;
+            height: 50px;
+            right: -150px;
+            bottom: 0;
+            background-color: blue;
+            z-index: 0;
+        }
+        #box{
+            position: absolute;
+            width: 200px;
+            height:500px;
+            right:0px;
+            bottom:-500px;
+            background-color: green;
+            z-index:1;
+        }
+    </style>
+    <script>
+        function getStyle(obj,name){
+            if(obj.currentStyle){
+                return obj.currentStyle[name];
+            }else{
+                return getComputedStyle(obj,null)[name];
+            }
+        }
+        function startMove(obj,attr,nTar,nFun){
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function(){
+                if(attr == 'opacity'){
+                    var cur = Math.round(getStyle(obj,attr)*100);
+                    console.log(cur);
+                }else{
+                    var cur = parseInt(getStyle(obj,attr));
+                }
+                var speed = (nTar - cur)/6;
+                speed = speed > 0? Math.ceil(speed) : Math.floor(speed);
+                if(cur == nTar){
+                    clearInterval(obj.timer);
+                    if(nFun){
+                        nFun();
+                    }
+                }else{
+                    if(attr == 'opacity'){
+                        obj.style.opacity = (cur + speed)/100;
+                    }else{
+                        obj.style[attr] = cur + speed + 'px';
+                    }
+                }
+            },30)    
+        }
+        window.onload = function(){
+            var oDiv = document.getElementById('div');
+            var oLeft = document.getElementById('left');
+            var oBox = document.getElementById('box');
+            oDiv.onclick = function(){
+                startMove(oLeft,'right',50,function(){
+                    startMove(oBox,'bottom',50);
+                })
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="div">
+        <div id="box"></div>
+        <div id="left"></div>
+    </div>
+</body>
+</html>

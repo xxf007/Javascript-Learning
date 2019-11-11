@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        alert(window.navigator.userAgent);
+        alert(navigator.appName)
+        // window.navigator 对象包含有关访问者的信息
+        // window.navigator 对象可以不带 window 前缀来写。
+        // cookieEnabled 属性返回 true，如果 cookie 已启用，否则返回 false：
+        // appName 属性返回浏览器的应用程序名称：
+        // appCodeName 属性返回浏览器的应用程序代码名称：
+        // product 属性返回浏览器引擎的产品名称：
+        // appVersion 属性返回有关浏览器的版本信息：
+        // userAgent 属性返回由浏览器发送到服务器的用户代理报头（user-agent header）：
+        // platform 属性返回浏览器平台（操作系统）：
+        // language 属性返回浏览器语言：
+        // onLine 属性返回 true，假如浏览器在线：
+        // javaEnabled() 方法返回 true，如果 Java 已启用：
+        window.onload = function(){
+            txt = "<p>浏览器代号: " + navigator.appCodeName + "</p>";
+            txt+= "<p>浏览器名称: " + navigator.appName + "</p>";
+            txt+= "<p>浏览器版本: " + navigator.appVersion + "</p>";
+            txt+= "<p>启用Cookies: " + navigator.cookieEnabled + "</p>";
+            txt+= "<p>硬件平台: " + navigator.platform + "</p>";
+            txt+= "<p>用户代理: " + navigator.userAgent + "</p>";
+            txt+= "<p>用户代理语言: " + navigator.language + "</p>";
+            document.getElementById("example").innerHTML=txt;
+        }
+    </script>
+</head>
+<body>
+    <div id="example">
+
+    </div>
+</body>
+</html>

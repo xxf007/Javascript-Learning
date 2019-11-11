@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+		div{
+			width: 15px;
+			height: 15px;
+			position: absolute;
+			background: red;
+			border-radius: 50%;
+		}
+    </style>
+    <script type="text/javascript">
+        function getPos(e){
+            var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+            var scrollLeft = document.documentElement.scrollLeft||document.body.scrollLeft;
+            return {
+                x:e.clientX + scrollLeft,
+                y:e.clientY + scrollTop
+            };
+        }
+        document.onmousemove = function(e){
+            var oEvent = e||window.event;
+            var oDiv = document.getElementsByTagName('div');
+            var Pos = getPos(oEvent);
+            for(var i = oDiv.length-1;i > 0;i--){
+                oDiv[i].style.top = oDiv[i-1].offsetTop + 'px';
+                oDiv[i].style.left = oDiv[i-1].offsetLeft + 'px';
+            }
+            oDiv[0].style.left=Pos.x+'px';
+            oDiv[0].style.top=Pos.y+'px';
+            
+        }
+
+    </script>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>

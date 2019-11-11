@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>看看你出生了几天了</h3>
+    <label for="startDate">启始日期</label>
+    <input type="date" id="startDate" value="1998-01-20" placeholder="启始日期">
+    <div id="show">
+
+    </div>
+    <script>
+        var startDate = document.getElementById('startDate');
+        startDate.onchange = function(){
+            startValue = new Date(startDate.value);
+            nowValue = new Date();
+            dayValue = nowValue.getTime() - startValue.getTime();
+            show = document.getElementById('show');
+            show.innerHTML = '到今天为止，您总共活了：' + dayValue/1000/60/60/24 + '天';
+            console.log(startValue,nowValue,nowValue.getTime(),dayValue,dayValue/1000/60/60/24);
+        }
+
+    </script>
+</body>
+</html>

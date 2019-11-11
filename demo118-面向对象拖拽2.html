@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+        }
+        #box2{
+            width: 400px;
+            height: 400px;
+            background: blue;
+            position: absolute;
+            top: 200px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            new Drag('box');
+            new LimitDrag('box2');
+        }
+        function Drag(id){
+            var _this = this;
+            this.disX = 0;
+            this.disY = 0;
+            this.zindex = 0;
+            this.oDiv = document.getElementById(id);
+            this.oDiv.onmousedown = function(e){
+                _this.mouseDown(e);
+                return false;
+            }
+        }
+        Drag.prototype.mouseDown = function(e){
+            var oEvent = e||window.e;
+            var _this = this;
+            this.oDiv.style.zIndex = ++this.zindex;
+            if(this.oDiv.setCapture){
+                this.disX = oEvent.clientX - this.oDiv.offsetLeft;
+                this.disY = oEvent.clientY - this.oDiv.offsetTop;
+                this.oDiv.onmousemove = function(e){
+                    _this.mouseMove(e);
+                    //在IE7下使用事件捕获，确保所有的事件都指向DIV
+                    _this.oDiv.setCapture();
+
+                };
+                this.oDiv.onmouseup = function(e){
+                    _this.mouseUp(e);
+                };
+            }else{
+                this.disX = oEvent.clientX - this.oDiv.offsetLeft;
+                this.disY = oEvent.clientY - this.oDiv.offsetTop;
+                document.onmousemove = function(e){
+                    _this.mouseMove(e);
+                    //在IE7下使用事件捕获，确保所有的事件都指向DIV
+
+                };
+                document.onmouseup = function(e){
+                    _this.mouseUp(e);
+                };
+            }
+        }
+  
+        Drag.prototype.mouseMove = function(e){
+            var oEvent = e || window.event;
+            this.oDiv.style.left = oEvent.clientX - this.disX + 'px';
+            this.oDiv.style.top =  oEvent.clientY - this.disY + 'px';
+        }
+        Drag.prototype.mouseUp = function(e){
+            document.onmousemove = null;
+            document.onmouseup = null;
+            this.zindex = 0;
+            //在使用了事件捕获之后，在鼠标抬起的时候。需要释放这个事件捕获，不然的话，无法进行任何操作
+            if (document.releaseCapture) {
+            document.releaseCapture();
+            };
+        }
+        // 继承
+        function LimitDrag(id){
+            Drag.call(this,id);
+        }
+        for(var i in Drag.prototype){
+            LimitDrag.prototype[i] = Drag.prototype[i];
+        }
+        LimitDrag.prototype.mouseMove = function(e){
+            var oEvent = e || event;
+            var l = oEvent.clientX - this.disX ;
+            var t = oEvent.clientY - this.disY ;
+            var r=document.documentElement.clientWidth - this.oDiv.offsetWidth;
+            var b=document.documentElement.clientHeight - this.oDiv.offsetHeight;
+            if(l<0){
+                l=0;
+            }else if(l>r){
+                l=r;
+            };
+
+            if(t<0){
+                t=0;
+            }else if(t>b){
+                t=b;
+            };
+            this.oDiv.style.left = l + 'px';
+            this.oDiv.style.top = t + 'px';
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+        快去拖拽他
+    </div>
+    <div id="box2">
+        快来拖拽我
+    </div>
+</body>
+</html>

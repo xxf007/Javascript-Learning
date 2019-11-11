@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //用Json 的方式，做命名空间，避免函数重名的情况
+        var xxf = {};
+        xxf.common = {};
+        xxf.fx = {};
+        xxf.site = {};
+        xxf.common.getUser = function(){
+            console.log('common');
+        }
+        xxf.fx.getUser = function(){
+            alert('fx');
+        }
+        xxf.site.getUser = function(){
+            alert('site');
+        }
+        xxf.common.getUser();
+        xxf.fx.getUser();
+        xxf.site.getUser();
+        function loadxml(){
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.open("GET","/try/ajax/ajax_info.txt",true);
+            xmlhttp.send();
+            xmlhttp.onreadystatechange = function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    document.getElementById("box").innerHTML = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.onload = function(){
+
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+        <h2>使用AJAX修改文本内容</h2>
+    </div>
+    <button type="button" onclick="loadxml()">修改内容</button>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/demo81.css">
+    <script type="text/javascript">
+        function getStyle(obj,name){
+            if(obj.currentStyle){
+                return obj.currentStyle[name];
+            }else{
+                return getComputedStyle(obj,null)[name];
+            }
+        }
+        function startMove(obj,json,nFun){
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function(){
+                var bStop = true;
+                for(var attr in json){
+                    var cur = 0;
+                    if(attr == 'opacity'){
+                        cur = Math.round(getStyle(obj,attr)*100);
+                    }else{
+                        cur = parseInt(getStyle(obj,attr));
+                    }
+                    var speed = (json[attr] - cur)/6;
+                    speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                    //如果其中有一个JSON值还没有到达目标点的时候,
+                    //就把bStop=false赋值为假
+                    if (cur != json[attr]){
+                        bStop=false;
+                    } 
+                    if(attr == 'opacity'){
+                        obj.style.opacity = (cur + speed)/100;
+                    }else{
+                        obj.style[attr] = cur + speed + 'px';
+                    }
+                }
+                if(bStop){
+                    clearInterval(obj.timer);
+                    if(nFun){
+                        nFun();
+                    }
+                }
+            },30)    
+        }
+        window.onload = function(){
+            var oBox = document.getElementById('box');
+            var oOl = oBox.getElementsByTagName('ol')[0];
+            var oOlLi = oOl.getElementsByTagName('li');
+            var oUl = oBox.getElementsByTagName('ul')[0];
+            var oUlLi = oUl.getElementsByTagName('li');
+            var now = 0;
+            function tab(){
+                for(var i =0;i < oOlLi.length; i++){
+                    oOlLi[i].className = '';
+                }
+                oOlLi[now].className = 'active';
+                
+                startMove(oUl,{top:-now*oUlLi[0].offsetHeight},function(){
+                    console.log(-now*oUlLi[0].offsetHeight);
+                })
+            }
+            tab();
+            for(var i = 0;i < oOlLi.length; i++){
+                oOlLi[i].index = i;
+                oOlLi[i].onclick = function(){
+                    now = this.index;
+                    tab();
+                }
+            }
+            function next(){
+                now++;
+                if(now >= oOlLi.length){
+                    now = 0;
+                }
+                tab();
+            }
+            var timer = setInterval(next,2000);
+            oBox.onmouseover = function(){
+                clearInterval(timer);
+            }
+            oBox.onmouseout = function(){
+                timer = setInterval(next,2000);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="box" class="box">
+        <ol>
+            <li class="active">
+                1
+            </li>
+            <li>
+                2
+            </li>
+            <li>
+                3
+            </li>
+            <li>
+                4
+            </li>
+            <li>
+                5
+            </li>
+            <li>
+                6
+            </li>
+            <li>
+                7
+            </li>
+        </ol>
+        <ul>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="img/move3/akito.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="img/move3/Berserk.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img src="img/move3/EVA.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img src="img/move3/Gintama.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img src="img/move3/SteinsGate.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img src="img/move3/SummerWars.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <img src="img/move3/Unicorn.jpg" alt="">
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

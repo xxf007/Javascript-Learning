@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 工厂函数 -->
+    <script>
+        // 工厂模式
+        function addNum(num){
+            var obj = new Object();
+            obj.num = num;
+            obj.add = function(){
+                var sum = 0;
+                if(arguments.length > 0){
+                    for(var i = 0;i < arguments.length;i++){
+                        sum = sum + arguments[i];
+                    }
+                }
+                return sum;
+            }
+            // var obj = {
+            //     run:function(){
+
+            //     }
+            // }
+            return obj;
+        }
+        var nT = addNum(1);
+        console.log(nT.num);
+        console.log(nT.add(32,42,4,65,4));
+        var createObj = function(n){
+            return {
+                name:n,
+                run:function(){
+                    var sum = 0;
+                    if(arguments.length > 0){
+                        for(var i = 0;i < arguments.length;i++){
+                            sum = sum + arguments[i];
+                        }
+                    }
+                    return sum;
+                }
+            }
+        }
+        var sum = createObj('wo');
+        console.log(sum.run(1,3,4,6,7,10));
+        console.log(sum.name);
+        //构造函数模式
+        function Mulnum(){
+            this.add = function(){
+                var sum = 1;
+                if(arguments.length > 0){
+                    for(var i = 0;i < arguments.length;i++){
+                        sum = sum * arguments[i];
+                    }
+                }
+                console.log(sum);
+            }
+        }
+        var mul = new Mulnum();
+        mul.add(10,2,3);
+        function Addnum(){
+            this.sum = 0;
+            this.arr = arguments;
+            this.add = function(){
+               for(var i = 0;i < this.arr.length;i++){
+                   this.sum = this.sum + this.arr[i];
+               } 
+               console.log(this.sum);
+            }
+        }
+        var addnum = new Addnum(1,65,6);
+        addnum.add();
+        var o = new Object();
+        Addnum.call(o,2,5,7,8,11);
+        o.add();
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #box{
+            position: absolute;
+            width: 120px;
+            background: #ccc;
+            border: 1px solid #000;
+            height: auto;
+            overflow: hidden;
+            display: none;
+        }
+    </style>
+    <script>
+        document.oncontextmenu = function(e){
+            var oEvent = e||window.event;
+            var oDiv = document.getElementById('box');
+            oDiv.style.display = 'block';
+            oDiv.style.left = oEvent.clientX + 'px';
+            oDiv.style.top = oEvent.clientY + 'px';
+            //oncontextmenu 有返回值
+			return false;  //阻止默认菜单
+			//阻止了以后，加一个自己的菜单
+        }
+        document.onclick = function(){
+            var oDiv = document.getElementById('box');
+            oDiv.style.display = 'none';
+        }
+        window.onbeforeunload = function(event) { 
+
+            return confirm("确定退出吗"); 
+
+        }
+    </script>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li>123</li>
+            <li>456</li>
+            <li>789</li>
+            <li>zzzz</li>
+            <li>xxxx</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+		#box{
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			background: red;
+			border-radius: 50%;
+		}
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            document.onmousemove = function(e){
+                var oEvent = e||window.event;
+                var oDiv = document.getElementById('box');
+                var scrolltop = document.documentElement.scrollTop||document.body.scrollTop;
+                console.log(scrolltop);
+                // oDiv.style.top = oEvent.clientY + scrolltop + 'px';
+                // oDiv.style.left = oEvent.clientX  + 'px'; 相对于可视窗口的
+                oDiv.style.top = oEvent.pageY + 'px';
+                oDiv.style.left = oEvent.pageX  + 'px';
+                //相对于整个页面的
+                // oDiv.style.top = oEvent.screenY + 'px';
+                // oDiv.style.left = oEvent.screenX  + 'px';相对于电脑屏幕的
+            }
+        }
+    </script>
+</head>
+<body style="height: 2000px;">
+    <div id="box">
+
+    </div>
+</body>
+</html>

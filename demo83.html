@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, 
+        strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, 
+        tfoot, thead, tr, th, td ,textarea { margin:0; padding:0;  }
+        address,cite,dfn,em,var, i {font-style:normal;}
+        body {font-size: 16px; line-height: 1.5; font-family:'Microsoft Yahei','simsun','arial','tahoma';  color: #222; background: #eee; }
+        table { border-collapse:collapse; border-spacing:0; }
+        h1, h2, h3, h4, h5, h6, th { font-size: 100%; font-weight: normal; }
+        button,input,select,textarea{font-size:100%;}
+        fieldset,img{border:0;}
+        a { text-decoration: none; color: #666; background: none }
+        ul, ol { list-style: none; }
+        :focus{ outline:none;}
+        .clearfix{ clear: both; content: ""; display: block; overflow: hidden }
+        .clear{clear: both;}
+        #mesg{
+            border:1px solid #ddd;
+            margin: 50px auto;
+            width: 600px;
+            height: auto;
+            overflow: hidden;
+            padding: 10px;
+        }
+        #mesg ul{
+            margin: 10px auto;
+			width: 100%
+        }
+        #mesg ul li{ 
+            font-size: 14px;
+			border-bottom: 1px dashed #ddd;
+			padding:5px 0;
+			opacity: 0;
+        }
+        #txt{
+            width: 100%;
+            height: 100px;
+            resize: none;
+        }
+        #btn{
+            display: block;
+			width: 100%;
+			padding: 5px;
+        }
+    </style>
+    <script>
+        function getStyle(obj,name){
+            if(obj.currentStyle){
+                return obj.currentStyle[name];
+            }else{
+                return getComputedStyle(obj,null)[name];
+            }
+        }
+        function startMove(obj,json,nFun){
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function(){
+                var bStop = true;
+                for(var attr in json){
+                    var cur = 0;
+                    if(attr == 'opacity'){
+                        cur = Math.round(getStyle(obj,attr)*100);
+                    }else{
+                        cur = parseInt(getStyle(obj,attr));
+                    }
+                    var speed = (json[attr] - cur)/6;
+                    speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                    //如果其中有一个JSON值还没有到达目标点的时候,
+                    //就把bStop=false赋值为假
+                    if (cur != json[attr]){
+                        bStop=false;
+                    } 
+                    if(attr == 'opacity'){
+                        obj.style.opacity = (cur + speed)/100;
+                    }else{
+                        obj.style[attr] = cur + speed + 'px';
+                    }
+                }
+                if(bStop){
+                    clearInterval(obj.timer);
+                    if(nFun){
+                        nFun();
+                    }
+                }
+            },30)    
+        }
+        window.onload = function(){
+            var Btn = document.getElementById('btn');
+            var Ul = document.getElementById('ul');
+            var Txt = document.getElementById('txt');
+            Btn.onclick = function(){
+                var li = document.createElement('li');
+                li.innerHTML = Txt.value;
+                Txt.value = '';
+                console.log(Ul.children);
+                if(Ul.children.length > 0){
+                    Ul.insertBefore(li,Ul.children[0]);
+                }else{
+                    Ul.appendChild(li);
+                }
+                console.log(Ul.children);
+                var nHeight = li.offsetHeight;
+                li.style.height = '0';
+                startMove(li,{height:nHeight},function(){
+                    startMove(li,{opacity:100});
+                })
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="mesg">
+        <textarea id="txt" ></textarea>
+        <input type="button" id="btn" value="发布">
+        <ul id="ul">
+            
+        </ul>
+    </div>
+</body>
+</html>

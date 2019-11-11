@@ -44,7 +44,7 @@
                     cur = Math.round(getStyle(obj,attr)*100); 
 
                 }else{
-                    cur = getStyle(obj,attr);          
+                    cur = parseInt(getStyle(obj,attr));//0px         
                 }
                 var speed = (nTar - cur)/6;
                 speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
@@ -62,7 +62,109 @@
                 }
             },30)
         }
-        
+        function getByClass(oParent,sClass){
+            var aElement = oParent.getElementsByTagName('*');
+            var aResult = [];
+            for(var i = 0;i < aElement.length;i++){
+                if(aElement[i].className == sClass){
+                    aResult.push(aElement[i])
+                }
+            }
+            return aResult;
+        }
+        window.onload = function(){
+            var banner = document.getElementById('banner');
+            var Btnpre = getByClass(banner,'pre')[0];
+            var Btnnext = getByClass(banner,'next')[0];
+            Btnpre.onmouseover = function(){
+                startMove(Btnpre,'opacity',100);
+            }
+            Btnpre.onmouseout = function(){
+                startMove(Btnpre,'opacity',0);
+            }
+            Btnnext.onmouseover = function(){
+                startMove(Btnnext,'opacity',100);
+            }
+            Btnnext.onmouseout = function(){
+                startMove(Btnnext,'opacity',0);
+            }
+            var imgBox = getByClass(banner,'imgbox')[0];
+            var imgBoxLi = imgBox.getElementsByTagName('li');
+            var simgBox = getByClass(banner,'simgbox')[0];
+            var simgBoxLi = simgBox.getElementsByTagName('li');
+            var now = 0;
+            var zindex = 0;
+            simgBox.style.width = simgBoxLi.length * (simgBoxLi[0].offsetWidth + 10) + 'px';
+            for(var i = 0;i < simgBoxLi.length; i++){
+                simgBoxLi[i].index = i;
+                simgBoxLi[i].onclick = function(){
+                    if (this.index==now){
+                        return;
+                    } 
+                    now = this.index;
+                    tab();
+                }
+                simgBoxLi[i].onmouseover = function(){
+                    for (var j = 0; j < simgBoxLi.length; j++) {
+                        if(simgBoxLi[j].index == now){
+                            continue;
+                        }
+                        startMove(simgBoxLi[j],"opacity",30);
+                    }
+                    startMove(this,"opacity",100);
+                }
+                simgBoxLi[i].onmouseout = function(){
+                    if(this.index != now){
+                        startMove(this,'opacity',30);
+                    }else{
+                        startMove(this,'opacity',100);
+                    }          
+                }
+            }
+            function tab(){
+                for(var i = 0;i < simgBoxLi.length; i++){
+                    startMove(simgBoxLi[i],'opacity',30);
+                }
+                startMove(simgBoxLi[now],'opacity',100);
+                imgBoxLi[now].style.width = 0;
+                zindex ++;
+                imgBoxLi[now].style.zIndex = zindex;
+                startMove(imgBoxLi[now],'width',400);
+                if (now == 0) {
+                    startMove(simgBox,'left',0);
+                }else if(now > simgBoxLi.length-2){
+                    //4
+                    startMove(simgBox,'left',-(now-3)*(simgBoxLi[0].offsetWidth + 10));
+                }else if(now == simgBoxLi.length-2){
+                    startMove(simgBox,'left',-(now-2)*(simgBoxLi[0].offsetWidth + 10));
+                }else{
+                    startMove(simgBox,'left',-(now-1)*(simgBoxLi[0].offsetWidth + 10));
+                }
+                console.log((now-1)*(simgBoxLi[0].offsetWidth+10))
+            }
+            tab();
+            Btnpre.onclick = function(){
+                now --;
+                if(now<0){
+                    now = simgBoxLi.length -1 ;
+                }
+                tab();
+            }
+            Btnnext.onclick = function(){
+                now ++;
+                if(now >= simgBoxLi.length){
+                    now = 0;
+                }
+                tab();
+            }
+            var timer = setInterval(Btnnext.onclick,3000);
+            banner.onmouseover = function(){
+                clearInterval(timer);
+            }
+            banner.onmouseout = function(){
+                timer = setInterval(Btnnext.onclick,3000);
+            }
+        }
     </script>
 </head>
 <body>

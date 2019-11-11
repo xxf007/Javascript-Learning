@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+	    body{
+	    	margin: 0;
+	    	padding: 100px;
+	    }
+		#div1{
+			width:100px;
+			height:100px;
+			background-color: red;
+			opacity: 0.3;
+		}
+    </style>
+    <script>
+        function startMove(obj,attr,nTar,nFun){
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function(){
+                var cur;
+                if(attr == 'opacity'){
+                    //Math.round
+                    //这里需要用一个四舍五入取整的方法、去除小数点
+                    //计算机有些计算是有BUG问题的
+                    //比如alert(0.07*100);
+                    cur = Math.round(getStyle(obj,attr)*100); 
+
+                }else{
+                    cur = parseInt(getStyle(obj,attr));//0px         
+                }
+                var speed = (nTar - cur)/6;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                //console.log(spped);
+                if (cur == nTar) {
+                    clearInterval(obj.timer);
+                    if(nFun){
+                        nFun();
+                    }
+                }else{
+                    if (attr=='opacity') {
+                        cur += speed;
+                        obj.style.opacity=cur/100;
+                    }else{
+                        obj.style[attr] = cur + speed + 'px';
+                        //console.log(cur+speed);
+                    }
+                }
+            },30)
+        }
+        function getStyle(obj,name){
+            if(obj.currentStyle){
+                return obj.currentStyle[name];
+            }else{
+                return getComputedStyle(obj,null)[name];
+            }
+        }
+        window.onload = function(){
+            var oDiv1 = document.getElementById('div1');
+            oDiv1.onmouseover = function(){
+                startMove(oDiv1,'width',1000,function(){
+                    startMove(oDiv1,'height',300,function(){
+                        startMove(oDiv1,'border-radius',15,function(){
+                            startMove(oDiv1,'opacity',100)
+                        });
+                    });
+                });
+            }
+            oDiv1.onmouseout = function(){
+                startMove(oDiv1,'opacity',30,function(){
+                    startMove(oDiv1,'border-radius',0,function(){
+                        startMove(oDiv1,'height',100,function(){
+                            startMove(oDiv1,'width',100);
+                        })
+                    })
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="div1"></div>
+</body>
+</html>

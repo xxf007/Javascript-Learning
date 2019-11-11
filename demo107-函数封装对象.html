@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //函数封装对象
+        //构造函数
+        //工厂模式
+        function creatPerson(name,qq){
+            var obj =  new Object();
+            obj.name = name;
+            obj.qq = qq;
+            obj.showName = function(){
+                alert('我的名字叫' + this.name);
+            }
+            obj.showQQ = function(){
+                alert('我的QQ:' + this.qq);
+            }
+            return obj;
+        }
+        var obj = creatPerson('xf','007');
+        obj.showName();
+        obj.showQQ();
+        var obj2 = creatPerson('xxf','008');
+        obj2.showName();
+        obj2.showQQ();
+        alert(obj.showName == obj2.showName);
+        //函数重复，资源浪费
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul{
+            background: blue;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <ul id="box">
+        <li>li1</li>
+        <li>li2</li>
+        <li>li3</li>
+        <li>li4</li>
+        <li>li5</li>
+    </ul>
+    <script>
+        //事件委托
+        var box = document.getElementById('box');
+        box.addEventListener("click",function(event){
+            console.log(event.target);
+            // 防止点到父元素自己ul也触发事件
+            if(event.target.nodeName == 'LI'){
+                event.target.style.background = 'red';
+            }
+        })
+        // 普通事件
+        var box = document.getElementById('box');
+        var li = document.getElementsByTagName('li');
+        for(var i = 0;i < li.length;i ++){
+            li[i].addEventListener('click',function(){
+                this.style.background = 'red';
+            })
+        }
+    </script>
+</body>
+</html>

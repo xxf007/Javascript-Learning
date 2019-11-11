@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            var btn = document.getElementById('btn');
+            var app = document.getElementById('app');
+            var arr = [
+                    {
+                        title:"电视卡就打开角度来看杀了",
+                        view:"2312",
+                        id:1
+                    },
+                    {
+                        title:"东沙河街道干撒就会感到叫啥",
+                        view:"2312",
+                        id:2
+                    },
+                    {
+                        title:"收到后尽快大厦可简化的撒",
+                        view:"3213",
+                        id:3
+                    }
+                ];
+            function show(){
+                var str = '';
+                arr.forEach(function(value){
+                    str += '<div>' + '<span> 标题:' + value.title + '</span>' +  
+                    '<span> view:' + value.view+ '</span>' + 
+                    '<span> id:' + value.id + '</span>'
+                    app.innerHTML = str;
+                })
+            }
+            show();
+            var text = document.getElementById('text');
+            text.placeholder = '请输入title';
+            btn.onclick = function(){
+                
+                var newArr = {
+                    title:text.value,
+                    view:"3213",
+                    id:4
+                }
+                arr.push(newArr);
+                show();
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="提交" id="btn">
+    <input type="text" id="text">
+    <div id="app">
+
+    </div>
+</body>
+</html>

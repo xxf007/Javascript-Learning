@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>点击坐标</title>
+    <script type="text/javascript">
+        window.onload = function(e){
+            document.onclick = function(e){
+                //获取event对像（兼容性写法）
+				var oEvent = e||window.event;
+				alert(oEvent.clientX+',' + oEvent.clientY);
+            }
+        }
+    </script>
+</head>
+<body style="height: 1800px;">
+    
+</body>
+</html>

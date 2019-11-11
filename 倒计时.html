@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #222;
+            color:#eee;
+            font-size: 14px;
+            font-family:  'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+        em{
+            font-style: normal;
+            color: orange;
+            display: block;
+        }
+        input{
+            height: 40px;
+            line-height: 40px;
+            border-radius: 5px;
+            width: 200px;
+            text-align: center;
+            outline: none;
+            border:1px solid seagreen;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            function zero(n){
+                return n = n < 10? '0' + n : n;
+            }
+            function countDowns(times){
+                var timeL,
+                    endTime,
+                    nowTime,
+                    day = 0,
+                    hours = 0,
+                    minutes = 0,
+                    seconds = 0,
+                    t;
+                endTime = new Date(times);
+                nowTime = new Date();
+                timeL = endTime.getTime() - nowTime.getTime();
+                if(timeL > 0){
+                    day = zero(Math.floor(timeL/1000/60/60/24));
+                    hours = zero(Math.floor(timeL/1000/60/60%24));
+                    minutes = zero(Math.floor(timeL/1000/60%60));
+                    seconds = zero(Math.floor(timeL/1000%60));
+                    t = day + '天' + hours + '时' + minutes + '分' + --seconds + '秒';
+                }else{
+                    t = "已超过截至时间";
+                }
+                var oDateDiv = document.getElementById('date');
+                var oSpan = oDateDiv.getElementsByTagName('span')[0];
+                var oEm = oDateDiv.getElementsByTagName('em')[0];
+                oSpan.innerHTML = endTime.toLocaleString();
+                oEm.innerHTML = t;
+                document.title = t;          
+            }
+            var local = document.getElementById('local');
+            var timer = null;
+            local.onblur = local.onfocus = function(){
+                var locValue;
+                if(local.value){
+                    locValue = local.value;
+                }else{
+                    locValue = '2019-12-12 8:00:00';
+                    local.value = locValue;
+                }
+                countDowns(locValue);
+                clearInterval(timer);
+                timer = setInterval(function(){
+                    countDowns(locValue);
+                },1000)
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="local" autofocus value="2020-01-01 12:00:00">
+    <!-- atuofocus 自动聚焦在js里写了onfocus事件这样一开始就可以开始 -->
+    <h1 id="date">
+        <p>距离</p>
+        <span></span>
+        <em></em>
+    </h1>
+</body>
+</html>

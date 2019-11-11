@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            var canvas = document.getElementById('canvas');
+            var content = canvas.getContext('2d');
+            content.fillRect(20,20,120,60);//实心
+            content.strokeRect(20,200,200,200); //空心
+            content.beginPath(); //开始设置路径
+            content.moveTo(0,0);
+            content.lineTo(500,500);
+            content.stroke();
+            content.beginPath(); //开始设置路径
+            content.moveTo(0,500);
+            content.lineTo(500,0);
+            content.stroke();  
+            content.beginPath(); //开始设置路径
+            content.moveTo(100,50);
+            content.lineTo(100,200);
+            content.lineTo(250,200);
+            content.lineTo(100,50);
+            var image = new Image();
+            image.src = 'https://www.baidu.com/img/bd_logo1.png';
+            image.onload=function(){
+                content.drawImage(image,50,50,250,100);
+            }
+        }
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="500" height="500" style="background:#ddd">
+    </canvas>
+</body>
+</html>

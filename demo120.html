@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            var oTxt = document.getElementById('txt');
+            var oBtn = document.getElementById('btn');
+            oBtn.onclick = function(){
+                var oNewpage = window.open('about:blank','_blank');
+                // 打开个第一个参数的地址...在新窗口打开个空白窗口
+                oNewpage.document.write(oTxt.value);
+            }
+        }
+    </script>
+</head>
+<body>
+    <textarea name="" id="txt" cols="50" rows="10"></textarea>
+    <br />
+    <input type="button" value="运行" id="btn">
+</body>
+</html>

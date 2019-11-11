@@ -40,12 +40,7 @@
             var oAge = document.getElementById('age');
             var aA = document.getElementsByTagName('a');
             var n=oTable.tBodies[0].rows.length+1;
-            for (var i = 0; i < aA.length; i++) {
-                aA[i].onclick=function(){
-                    console.log(i+"<"+aA.length);
-                    oTable.tBodies[0].removeChild(this.parentNode.parentNode);
-                }
-            }
+            initdele();
             oButton.onclick=function(){
             
                 var oTr=document.createElement('tr');
@@ -68,16 +63,20 @@
                 oTable.tBodies[0].appendChild(oTr);
                 //存在一个未解决的BUG。无法删除最后一条 (先把oTr节点加入table，不然先拿到了aA的length就是没加之前的)
                 //存在一个未解决的BUG。必须要先添加一行，才能删除默认的行(先把a的onclick在外部初始化，而不是btn点击之后再初始化，可以封装成函数)
+                initdele();
+                console.log(aA.length);
+                //HTML DOM中的 HTMLCollection 是即时更新的；当其所包含的文档结构发生改变时，它会自动更新
+            };
+            function initdele(){
                 for (var i = 0; i < aA.length; i++) {
                     aA[i].onclick=function(){
                         console.log(i+"<"+aA.length);
                         oTable.tBodies[0].removeChild(this.parentNode.parentNode);
                     }
                 }
-                console.log(aA.length);
-                //HTML DOM中的 HTMLCollection 是即时更新的；当其所包含的文档结构发生改变时，它会自动更新
-            };
+            }
         }
+        
     </script>
 </head>
 <body>

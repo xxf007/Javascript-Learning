@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            var oEmail = document.getElementById('email');
+            var oBtn = document.getElementById('btn');
+            oBtn.onclick = function(){
+                //785079996@qq.com
+                var reg = /^\w+@[a-z0-9]+\.[a-z]+$/i;
+                if(reg.test(oEmail.value)){
+                    alert('合法');
+                }else{
+                    alert('非法');
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="text" name="" id="email">
+    <input type="button" id="btn" value="验证邮箱" name="">
+</body>
+</html>

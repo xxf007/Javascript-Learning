@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //混合的构造函数/原型方式
+        function createPerson(name,qq){
+            this.name = name;
+            this.qq = qq;
+        }
+        createPerson.prototype.showName = function(){
+            alert(this.name);
+        }
+        createPerson.prototype.showQQ = function(){
+            alert(this.qq);
+        }
+        var obj = new createPerson('xf','007');
+        var obj2 = new createPerson('xxf','008');
+        obj.showName();
+        obj.showQQ();
+        obj2.showName();
+        obj2.showQQ();
+        alert(obj.showName === obj2.showName);   
+        alert(obj.showName() == obj2.showName()); 
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
